@@ -1,0 +1,98 @@
+// _images.sass -*- nothing special
+
+// They feature a popout effect. When you hover the image, it will "pop out" of the layout,
+// and become bigger, in order to inspect the image properly. It's just nice I guess
+.image-container
+    display: inline-flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    z-index: 1000
+    :hover ~ .overlay
+        opacity: 1
+    img
+        background-color: rgba(white, 0.01)
+        // Make images take 80% of the parent. This is a nice compromise
+        width: 80%
+        height: auto
+        border-radius: 1em
+        cursor: zoom-in
+        // Little animation when zooming in
+        transition: all 0.30s cubic-bezier(0.17, 0.89, 0.32, 1)
+
+        // This is to make it centered
+        display: block
+        // Add a simple drop shadow
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5)
+        &:hover
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 1)
+            transform: scale(1.05)
+            z-index: 999
+    > .image-title
+        // The image title should be slightly below the image, but not too far
+        display: block
+        margin-top: 12px
+
+// Sort of lightbox effect where if you click the image it would get fullscreened (in a overlay div)
+// and be shown with a blurred bg. Pretty nice.
+.lightbox
+    position: fixed
+    inset: 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    background: rgba(0, 0, 0, 0.25)
+    backdrop-filter: blur(0px)
+    align-items: center
+    justify-content: center
+    z-index: 9999
+
+    opacity: 0
+    pointer-events: none
+    transition: opacity 0.25s ease, backdrop-filter 0.5s ease
+
+    // The content with info + image
+    .lightbox-content
+        display: flex
+        flex-direction: column
+        align-items: center
+        gap: 10px
+    // The info div containing the title or alt text, with the actual filename
+    .lightbox-info
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        width: 95%
+    // The title of the image, or the alt-text, depends on which is available.
+    .lightbox-title
+        font-weight: bold
+        margin-bottom: -2px
+        word-break: break-word
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8)
+    // The filename. This currently displays the hashed filename, not the original one.
+    // It would be nice if we did, not gonna lie
+    .lightbox-filename
+        font-size: 0.85rem
+        color: $text-tertiary
+        font-family: monospace
+        word-break: break-all
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8)
+
+    img
+        max-width: 95%
+        max-height: 85vh
+        border-radius: 8px
+        transform: translate(0px, 0px) scale(90%)
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)
+        will-change: transform
+    // This class is added dynamically (oo my gawd) with a little script tag.
+    // It's only 10 lines, so it shouldn't be too bad.
+    &.active
+        opacity: 1
+        pointer-events: auto
+        backdrop-filter: blur(10px)
+        img
+            transform: translate(0px, 0px) scale(1)
+            box-shadow: 0px 0px 20px black
+            border-radius: 20px

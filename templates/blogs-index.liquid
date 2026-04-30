@@ -1,0 +1,49 @@
+<!doctype html>
+<html prefix="og: https://ogp.me/ns#">
+    <head>
+        {% render 'partials/head', page: page, base_url: site.base_url, build: build %}
+    </head>
+
+    <body>
+        <div class=navbar>
+            {% render 'partials/navbar', base_url: site.base_url %}
+        </div>
+        <div class=content>
+            <h1 class="blog-title">nferhat's blogs</h1>
+            <p>
+                Here you can find me ramble about all sort of stuff. From tech news to cool optimizations I might fight,
+                perhaps shoutout a cool project I stumble across, or perhaps just talk about being human.
+            </p>
+
+            <hr>
+
+            {% for blog in pages %}
+                {% if blog.url contains "blog" and blog.url != "blog/index.html" and blog.url != "blog/tags.html" -%}
+                    <a class="colorless-link" href="/{{blog.url}}">
+                        {% if blog.draft %}
+                            <span class=blog-list-marker-draft># </span>
+                        {% else %}
+                            <span class=blog-list-marker># </span>
+                        {% endif %}
+                        <h3 class=blog-title-list>{{blog.title}}</h3>
+                    </a>
+
+                    {% assign rt_seconds = blog.meta.reading_time | modulo: 60 %}
+                    {% assign rt_minutes = blog.meta.reading_time | divided_by: 60 %}
+                    <pre class=metadata-no-skew>
+                        {% if blog.release_date != nil -%}
+                            {{blog.release_date.year}}/{{
+                                blog.release_date.month | prepend: '0' | slice: -2, 2
+                            }}/{{blog.release_date.day}} &bull;
+                        {% endif -%}
+                        {{blog.meta.word_count}} words &bull;
+                        {{rt_minutes}}'{{rt_seconds}}
+                        {% for tag in blog.tags -%} &bull; <a class="colorless-link" href="/blog/tags.html#tag-{{tag}}">#{{tag}}</a> {% endfor -%}
+                    </pre>
+                {%endif %}
+            {% endfor %}
+
+            <p class=funny-message>you have nothing to see here...</p>
+        </div>
+    </body>
+</html>

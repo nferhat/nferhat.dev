@@ -1,0 +1,31 @@
+// pages/blog/tags.sass -*- styling for the blog tags page.
+// It's the page where all the tags get listed.
+
+.blog-tag-name
+    margin-top: 0rem
+    font-family: 'Iosevka', monospace
+    color: $text-secondary
+    width: auto
+    display: inline
+    text-decoration: underline rgba($separator, 0.01) solid 2px
+    &:hover
+        text-decoration: underline $separator solid 2px
+// Make the tags always monospace, just for the style
+.blog-tag-marker
+    font-family: 'Iosevka', monospace
+    font-size: 24px
+    user-select: none
+    font-weight: 700
+    color: $separator
+// This piece of code makes it so when we are targetting a specific tag, highlight
+// it with some nice sleek red. For example if you do /blog/tags#tag-linux, it would
+// highlight the linux tag section in red.
+.blog-tag-header-container:target
+    span
+        color: $color1
+    h2
+        text-decoration: underline $color9 solid 2px
+
+// Container of the list of blogs here.
+.matching-pages
+    margin-left: 20px

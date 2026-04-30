@@ -1,0 +1,17 @@
+// Build absolute asset path for fonts
+@function font-path($file)
+    @return "/static/fonts/#{$file}"
+
+// Reusable mixin
+@mixin font-face($family, $file, $weight: normal, $style: normal)
+    @font-face
+        font-family: $family
+        src: url(font-path("#{$file}.woff2")) format("woff2")
+        font-weight: $weight
+        font-style: $style
+        font-display: swap
+
+@include font-face("Iosevka Aile", "IosevkaAile-Regular", 400, normal)
+@include font-face("Iosevka Aile", "IosevkaAile-Italic", 400, italic)
+@include font-face("Iosevka Aile", "IosevkaAile-Bold", 700, normal)
+@include font-face("Iosevka", "Iosevka-Regular", 400, normal)

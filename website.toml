@@ -1,0 +1,41 @@
+# The website configuration file.
+
+# The base URL of your website. This is where all assets are relative to.
+# If you are linking to `/assets/image.png`, the compiler will resolve it to
+# `https://nferhat.dev/assets/image.png`
+base-url = "https://nferhat.dev"
+
+# The root of the website content.
+#
+# Pages will be relative to this path.
+# content_root = "./content/"
+
+# Static files/content path.
+#
+# This is where you should bundle your images and whatnot.
+# static_root = "./static/"
+
+[styling]
+# What kind of styling language to use.
+#
+# "sass" is the default, you can also use "scss" or "css"
+# See the difference on https://sass-lang.com
+syntax = "sass"
+# The root file of your styling.
+#
+# By default, it also adds the directory containing this file into the sass load-paths.
+root-file = "./style/style.sass"
+# Additional directories to add to load-paths of the SASS compiler.
+#
+# This is needed if you have some SASS libraries shipped on npm
+# (I mean you shouldn't use them for something this simple but I digress)
+load-paths = []
+# Fonts to bundle with the styling. These will be minified and subsetted in order to
+# have the smallest footprint possible.
+bundle-fonts = [
+    "./static/fonts/Iosevka-Regular.woff2",
+    "./static/fonts/IosevkaAile-Bold.woff2",
+    "./static/fonts/IosevkaAile-Italic.woff2",
+    "./static/fonts/IosevkaAile-BoldItalic.woff2",
+    "./static/fonts/IosevkaAile-Regular.woff2",
+]

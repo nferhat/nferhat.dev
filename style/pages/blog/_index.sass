@@ -1,0 +1,47 @@
+// _blog-index.sass -*- styles for the blog/index.html page
+
+@import "tags"
+
+.blog-list-marker-draft
+    font-family: 'Iosevka', monospace
+    font-weight: 700
+    font-style: italic
+    user-select: none
+    color: $color3
+
+.blog-list-marker
+    font-family: 'Iosevka', monospace
+    user-select: none
+    font-weight: 700
+    font-style: italic
+    color: $separator
+
+.colorless-link
+    color: inherit
+    text-decoration: none
+
+// Variant from components/heading
+.metadata-no-skew
+    font-family: 'Iosevka'
+    font-variation-settings: "MONO" 1, "CASL" 1, "slnt" 12
+    color: $text-tertiary
+    font-size: 16px
+    margin-top: 5px
+    margin-left: 20px
+    // Make newlines disappear
+    white-space: normal
+
+// Less spacing for the headers here.
+.blog-title-list
+    margin-top: 0rem
+    width: auto
+    display: inline
+    &:hover
+        text-decoration: underline $color4 solid 2px
+
+.funny-message
+    font-family: 'Iosevka', monospace
+    color: rgba($text-tertiary, 0.5)
+    width: 100%
+    margin-top: 100px
+    text-align: center

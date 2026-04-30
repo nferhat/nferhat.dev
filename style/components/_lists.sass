@@ -1,0 +1,31 @@
+// _lists.sass -*- styling of lists.
+
+li, ul
+    // Do not break paragraphs into newlines. I can still control this using manual <br> tags in
+    // the content.
+    p
+        display: inline
+
+// Make the marker look like my editor theme
+ul > li::marker
+    color: $color1
+    font-family: 'Recursive'
+    font-variation-settings: "MONO" 1
+    content: "- "
+
+ul ul > li::marker
+    color: $color1
+    font-family: 'Recursive'
+    font-variation-settings: "MONO" 1
+    content: "* "
+
+ul ul ul > li::marker
+    color: $color1
+    font-family: 'Recursive'
+    font-variation-settings: "MONO" 1
+    content: "- "
+
+ol > li::marker
+    color: $color1
+    font-family: 'Recursive'
+    font-variation-settings: "MONO" 1

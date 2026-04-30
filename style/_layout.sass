@@ -1,0 +1,43 @@
+// _layout.sass -*- proper layouting of the page.
+// I am no web dev, most of these are copied from w3s and whatever copilot web
+// could give me.
+
+@use 'sass:color'
+
+@import "./colors"
+
+*
+    box-sizing: border-box
+
+// The main page is split in two
+// 1. A sidebar that contains absolute links to some pages of the site.
+// 2. Content, whatever you're reading/page you are on.
+
+// Make the body a flex container. The sidebar will be a flex-start and the content
+// will be at flex-end. This achieves the look im searching for
+body
+    margin: 0
+    line-height: 140%
+    display: flex
+    min-height: 100vh
+    background-color: $background-primary
+    color: $text-secondary
+    font-size: 17px
+    line-height: 150%
+    font-family: 'Iosevka Aile'
+
+.content
+    color: $text-primary
+    // Center the content in the screen by using flexbox
+    flex: 1
+    margin: 4rem auto
+    padding: 2rem 20px
+    width: 100%
+
+    // Desktop viewport: keep the content at a fixed 768px width
+    @media (min-width: 900px)
+        flex: 0 0 900px
+        width: 900px
+
+::-moz-selection, ::selection
+    background-color: rgba(color.scale($accent, $saturation:-20%), 0.1)

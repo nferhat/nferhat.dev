@@ -1,0 +1,35 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>{{page.title}}</title>
+
+<!-- OpenGraph metadata (translation: bullshit) required
+    so that platforms like social media (discord/etc.) create pretty embeds of the
+    website (so that the link doesn't look as suspicious? Also for search engines
+    I think this somewhat matters???)
+
+    Of course, it's generate from the rust side.
+ -->
+<meta property="og:title" content="{{ page.title }}" />
+{% if page.description != nil -%}
+<meta property="og:description" content="{{  page.description }}" />
+<meta name="description" content="{{ page.description }}" />
+{% endif %}
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{ base_url }}/{{ page.url }}" />
+
+<!-- The compiler handles stylesheets automatically.
+    We compile down SASS (that is passed to the CLI) into a minified CSS file.
+    This allows the browser to cache it efficiently.
+-->
+<link rel="preload" href="{{ build.stylesheet_link }}" as="style">
+<link rel="stylesheet" href="{{ build.stylesheet_link }}" />
+
+<!-- Smooth fullscreen image viewer for .clickable-image elements -->
+<script defer src="/static/lightbox.js"></script>
+
+{% if build.dev == true -%}
+    <!-- Include the hot-reload script to make hot reloading possible.
+        It's a SSE socket, whenever something changes we reload from that -->
+    <script defer src="/reload-script.js"></script>
+{% endif %}

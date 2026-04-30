@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+    <head>
+        {% render 'partials/head', page: page, base_url: site.base_url, build: build %}
+    </head>
+
+    <body>
+        <nav role=navigation>
+            <div class=navbar>
+                {% render 'partials/navbar', base_url: site.base_url %}
+            </div>
+        </nav>
+
+        <!-- Support div for the lightbox -->
+        <div id="lightbox" class="lightbox hidden">
+          <div class="lightbox-content">
+            <div class="lightbox-info">
+              <div id="lightbox-title" class="lightbox-title"></div>
+              <div id="lightbox-filename" class="lightbox-filename"></div>
+            </div>
+            <img id="lightbox-img" src="" alt="">
+          </div>
+        </div>
+
+        <div class=content>
+            <main role=main>
+                {% if page.url contains "blog" -%}
+                    {% render 'partials/blog-content', page: page %}
+                {% else -%}
+                    {{page.contents}}
+                {% endif -%}
+            </main>
+        </div>
+    </body>
+</html>

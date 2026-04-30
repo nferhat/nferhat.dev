@@ -1,0 +1,40 @@
+<!doctype html>
+<html prefix="og: https://ogp.me/ns#">
+    <head>
+        {% render 'partials/head', page: page, base_url: site.base_url, build: build %}
+    </head>
+
+    <body>
+        <div class=navbar>
+            {% render 'partials/navbar', base_url: site.base_url %}
+        </div>
+        <div class=content>
+            {% for tag in site.all_tags %}
+                <div id="tag-{{tag}}" class="blog-tag-header-container">
+                    <span class=blog-tag-marker>|> </span>
+                    <h2 class=blog-tag-name>{{tag}}</h2>
+                </div>
+                <br>
+
+                <div class=matching-pages>
+                    {% for blog in pages %}
+                        {% if blog.url contains "blog" and blog.tags contains tag  -%}
+                            <a class="colorless-link" href="/{{blog.url}}">
+                                {% if blog.draft %}
+                                    <span class=blog-list-marker-draft># </span>
+                                {% else %}
+                                    <span class=blog-list-marker># </span>
+                                {% endif %}
+                                <h3 class=blog-title-list>{{blog.title}}</h3>
+                                <br>
+                            </a>
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <hr>
+            {% endfor %}
+        </div>
+    </body>
+</html>

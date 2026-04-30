@@ -1,0 +1,26 @@
+
+{% if page.draft -%}
+<pre class=draft-text>
+        This page is still a draft!
+</pre>
+{% endif -%}
+
+{% assign rt_seconds = page.meta.reading_time | modulo: 60 %}
+{% assign rt_minutes = page.meta.reading_time | divided_by: 60 %}
+<h1 class="blog-title skew-up">{{page.title}}</h1>
+<pre class=metadata>
+    {% if page.draft -%}
+        Soon<sup>TM</sup> &bull;
+    {% else -%}
+        {% if page.release_date != nil -%}
+        {{page.release_date.year}}/{{
+            page.release_date.month | prepend: '0' | slice: -2, 2
+        }}/{{page.release_date.day}} &bull;
+        {% endif -%}
+    {% endif -%}
+    {{page.meta.word_count}} words &bull;
+    {{rt_minutes}}'{{rt_seconds}}
+    {% for tag in page.tags -%} &bull; <a class="colorless-link" href="/blog/tags.html#tag-{{tag}}">#{{tag}}</a> {% endfor -%}
+</pre>
+
+{{page.contents}}

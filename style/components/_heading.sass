@@ -1,0 +1,63 @@
+// _headings.sass -*- h tags
+//
+//
+// The actual style is copied from mcyoung's website, at least for the blog title with the
+// skew upwards and the fancy underline. Looks pretty nice
+
+h1, h2, h3, h4, h5, h6
+    letter-spacing: -0.025em
+    line-height: 1.15
+    padding-bottom: 2px
+    text-decoration: underline $text-tertiary solid 2px
+    color: $color7
+    text-underline-offset: 4px
+    text-wrap: balance
+    overflow-wrap: break-word
+    display: inline-block
+    font-family: 'Iosevka Aile'
+    font-variation-settings: "MONO" 1, "CASL" 1
+    margin-top: 1.5rem
+    margin-bottom: 0
+    width: 100%
+    transition: all ease 0.12s
+
+    &.blog-title
+        text-decoration: underline $color2 solid 2px
+        text-align: center
+    &.skew-up
+        transform: skewY(-3deg)
+
+    &:target
+        animation: none !important
+        outline: none !important
+        font-weight: var(--font-weight-light)
+        text-shadow: var(--text-shadow-glow)
+
+// Little metadata at the top of the page.
+// This comes here because its tied with the blog-title class
+.metadata
+    font-family: 'Iosevka'
+    font-variation-settings: "MONO" 1, "CASL" 1, "slnt" 12
+    color: $text-tertiary
+    font-size: 20px
+    transform: skewY(-3deg)
+    text-align: center
+    margin-top: 0px
+    margin-top: 10px
+    margin-bottom: 5rem
+    // Make newlines disappear
+    white-space: normal
+
+// Little metadata at the top of the page.
+// This comes here because its tied with the blog-title class
+.draft-text
+    font-family: 'Iosevka'
+    font-variation-settings: "MONO" 1, "CASL" 1, "slnt" 12
+    color: $text-tertiary
+    font-size: 20px
+    transform: skewY(-3deg)
+    text-align: center
+    margin-top: 0px
+    margin-bottom: -1rem
+    // Make newlines disappear
+    white-space: normal

@@ -1,0 +1,85 @@
+# Syntax highlighting theme.
+# This is the same theme that I use inside Helix and Zed. Based on Onedark, Rxhyn's Yoru theme,
+# etc... A lot of color tweaks and whatnot. Still looks amazing.
+
+"attribute" = "#de8f78"
+"boolean" = "#de8f78"
+"constant" = "#de8f78"
+"constant.builtin" = "#ffb29b"
+"constant.character" = "#df5b61"
+"constructor" = "#de8f78"
+
+# Comment highlighting.
+# This only works with injections, but they are not present yet (in the Website's
+# highlighter, at least)
+"comment" = "#49494b"
+"comment.error" = "#df5b61"
+"comment.hint" = "#6791c9"
+"comment.info" = "#87c7a1"
+"comment.warning" = "#de8f78"
+
+
+# Functions and whatnot.
+"function" = "#6791c9"
+# Some queries I include use either of these for macros, can't be bothered
+# to change them ngl.
+"function.special" = "#c4c4c4"
+"function.macro" = "#c4c4c4"
+"macro" = "#c4c4c4"
+
+# I forgot what this is for.
+"identifier" = "#df5b61"
+
+"keyword" = "#bc83e3"
+"keyword.storage.type" = "#bc83e3"
+"keyword.function" = "#bc83e3"
+"keyword.debug" = "#df5b61"
+"keyword.import" = "#6791c9" # use/#include/import...
+"keyword.modifier" = "#de8f78" # the mutability modifier in Rust
+
+# Forgot what this is for.
+"label" = "#de8f78"
+
+# This is for markdown tokens.
+"markup.bold" = "c4c4c4"
+"markup.heading" = "#6791c9"
+"markup.heading.marker" = "#df5b61"
+"markup.italic" = "c4c4c4"
+"markup.link.label" = "#df5b61"
+"markup.link.text" = "#df5b61"
+"markup.link.url" = "#6791c9"
+"markup.list" = "#df5b61"
+"markup.quote" = "#c4c6d0"
+"markup.raw.inline" = "#dedede"
+# Special links
+"link_text" = "#df5b61"
+"link_uri" = "#6791c9"
+"link_uri.markup" = "#49494b"
+
+# Some languages capture it as @module some others as @namespace
+# Just put both.
+"module" = "#606077"
+"namespace" = "#606077"
+"number" = "#de8f78"
+"operator.special" = "#df5b61"
+# Brackets, dots, parens, etc...
+"operator" = "#606077"
+"punctuation" = "#606077"
+"punctuation.bracket" = "#606077"
+"punctuation.delimiter" = "#606077"
+
+"string" = "#87c7a1"
+"string.regexp" = "#df5b61"
+"string.special" = "#df5b61"
+
+# Types and nodes.
+"tag" = "#de8f78" # this is specifically for HTML
+"type" = "#ffb29b"
+"syntax.lifetime" = "#de8f78" # rust lifetimes
+"type.builtin" = "#de8f78"
+"type.parameter" = "#de8f78" # generics
+
+# Make variables neutral color
+"variable" = "#dedede"
+"variable.special" = "#c4c4c4"
+"keyword.operator" = "#c4c4c4"

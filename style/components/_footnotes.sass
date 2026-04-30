@@ -1,0 +1,26 @@
+// Footnote references and definitions
+a.footnote-ref
+    text-decoration: none
+    font-family: monospace
+    font-size: 85%
+    color: $accent
+.footnote-back
+    text-decoration: none
+    font-family: monospace
+    font-weight: 900
+    font-size: 85%
+    margin-left: 10px
+    color: $text-tertiary
+// The actual ID the footnote, it looks like a (<ID>) and it should be not "really" visible
+.footnote-id
+    font-family: monospace
+    color: $text-tertiary
+    font-size: 80%
+    user-select: none
+    margin-right: 10px
+// Make everything inside the footnote container act with inline-block.
+//
+// Paragraphs (and many other elements by default) have display:block default, which means it will
+// break into a newline on each element. This allows everything to fit in a single line.
+.footnote > *
+    display: inline

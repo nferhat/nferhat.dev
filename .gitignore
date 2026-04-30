@@ -1,0 +1,6 @@
+# The build artifacts of languages.
+/languages/_build/
+# The built HTML. Just run the cli to get it
+/dist/
+# Nix stuff, just ignore...
+/.direnv/

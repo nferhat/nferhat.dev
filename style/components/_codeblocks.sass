@@ -1,0 +1,45 @@
+// _codeblocks.sass -*- The codeblock container.
+//
+// It consists of two things: the actual codeblock container, and an additional
+// <p> that shows the language version. For now we don't have any buttons in it but
+// in the future I might consider adding those.
+
+pre
+   font-size: 16px
+   font-family: "Iosevka"
+   line-height: 1.25
+.codeblock
+    position: relative
+    > pre
+        box-shadow: 0px 0px 5px rgba(black, 0.25)
+        font-size: 12pt
+        padding: 12px 20px
+        background-color: $background-tertiary
+        border-radius: 20px
+        border-radius: 4px
+
+    // This is required in order to place the language marker absolutely
+    position: relative
+    > .language-name
+        // Smaller font since its not that important but still
+        font-family: "Iosevka"
+        line-height: 100%
+        font-size: 12pt
+        // Little block with rounded border
+        background-color: rgba($text-primary, 0.05)
+        padding: 6px
+        border-radius: 2px
+        margin: 8px
+        // Make it aligned to the bottom-right of the codeblock
+        position: absolute
+        bottom: 0
+        right: 0
+
+// Inline code blocks, stuff like `hello`
+.inline-code
+    background-color: rgba($text-primary, 0.05)
+    color: $text-secondary
+    box-shadow: 0px 0px 2px rgba(black, 0.25)
+    padding: 2px 8px
+    font-size: 95%
+    border-radius: 4px

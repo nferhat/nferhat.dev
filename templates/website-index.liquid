@@ -1,0 +1,36 @@
+<!doctype html>
+<html prefix="og: https://ogp.me/ns#">
+    <head>
+        {% render 'partials/head', page: page, base_url: site.base_url, build: build %}
+    </head>
+
+    <body>
+        <div class=navbar>
+            {% render 'partials/navbar', base_url: site.base_url %}
+        </div>
+        <div class=content>
+            {% if page.url contains "blog" -%}
+                {% render 'partials/blog-content', page: page %}
+            {% else -%}
+                {{page.contents}}
+            {% endif -%}
+
+            {% for blog in pages %}
+                {% if blog.url contains "blog" and blog.url != "blog/index.html" and blog.url != "blog/tags.html" and blog.draft == false -%}
+                    <a class="colorless-link" href="/{{blog.url}}">
+                        <span class=blog-list-marker># </span>
+                        <h3 class=blog-title-list>{{blog.title}}</h3>
+                    </a>
+
+                    {% assign rt_seconds = blog.meta.reading_time | modulo: 60 %}
+                    {% assign rt_minutes = blog.meta.reading_time | divided_by: 60 %}
+                    <pre class=metadata-no-skew>
+                        {{blog.meta.word_count}} words &bull;
+                        {{rt_minutes}}'{{rt_seconds}}
+                        {% for tag in blog.tags -%} &bull; #{{tag}} {% endfor -%}
+                    </pre>
+                {%endif %}
+            {% endfor %}
+        </div>
+    </body>
+</html>

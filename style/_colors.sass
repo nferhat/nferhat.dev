@@ -1,0 +1,60 @@
+// _colors.sass -*- color definitions
+
+
+/* Terminal colors */
+$color0: #161617
+$color1: #df5b61
+$color2: #87c7a1
+$color3: #de8f78
+$color4: #6791c9
+$color5: #bc83e3
+$color6: #70b9cc
+$color7: #c4c4c4
+/* Bright terminal colors -*- Usually for bold or some variation in a TUI */
+$color8: #181819
+$color9: #ee6a70
+$color10: #96d6b0
+$color11: #ffb29b
+$color12: #7ba5dd
+$color13: #cb92f2
+$color14: #7fc8db
+$color15: #cccccc
+
+/* Background and text colors, arranged into palletes of three variations
+ *
+ * - The primary color is the main color, used for large areas/text fields, for example your
+ *   terminal background should use background.primary
+ *
+ * - The secondary color is used for less important UI elements  that should indicate updates or
+ *   new information to the user, and may require user interaction.
+ *
+ * - The tertiary color, used for miscellaneous UI elements that should not distract the user's
+ *   main interaction with the other part of the UI. It can also be used to create contrast with the
+ *   secondary UI color.
+ *   For example, your comments in the text editor should be highlighted using text.tertiary. The
+ *   statusline of your editor should be highlighted using background.tertiary
+ */
+$background-primary: #141416
+$background-secondary: #181819
+$background-tertiary: #101012
+$text-primary: #dedede
+$text-secondary: #c4c6d0
+$text-tertiary : #49494b
+
+/* The accent color for important text */
+$accent: $color12
+/* The text color for error messages
+ * You'd generally pair this with background-secondary to make the error pop out.
+ */
+$error: $color1
+/* The text color for warning messages
+ * You'd generally pair this with background-secondary to make the warning pop out.
+ */
+$error: $color3
+/* The color for information messages */
+$info: $color2
+
+/* The color for separators of UI elements, or border around areas.
+ * For example a popup border in the UI should use separator.
+ */
+$separator: #222224

@@ -1,0 +1,49 @@
+// _navbar.sass -*- styling for the navbar
+// I am no web dev, most of these are copied from w3s and whatever copilot web
+// could give me.
+
+@import "./colors"
+
+.navbar
+  // Centered horizontally
+  width: 50%
+  position: absolute
+  left: 50%
+  transform: translateX(-50%)
+  margin-top: 1rem
+  padding: 1rem 2rem
+  display: flex
+  // Desktop viewport: keep the content at a fixed 768px width
+  @media (min-width: 900px)
+      flex: 0 0 900px
+      width: 900px
+
+.navbar-links
+  // Make the items nicely centered in the screen
+  display: flex
+  justify-content: center
+  border-radius: 0
+  box-sizing: border-box
+  gap: 1rem
+  width: fit-content
+  margin-left: auto
+
+  // Make anchor tags use the accent color
+  a
+    color: $accent
+    text-decoration: none
+
+    &:hover
+      color: $accent
+      text-decoration: none
+
+      // Add thicker underline effect using border-bottom
+      border-bottom: 2px solid $accent
+
+.navbar-me
+    font-family: 'Iosevka', monospace
+
+.text-tertiary
+    color: $text-tertiary
+.text-green
+    color: $color2
