@@ -5,6 +5,9 @@ pkgs.mkShell rec {
     shopify-cli # templates LSP
     marksman    # markdown LSP
 
+    # Scripts
+    python3     
+
     # Building grammars.
     gcc        
     tree-sitter
