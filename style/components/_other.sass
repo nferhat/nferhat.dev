@@ -8,8 +8,9 @@
 blockquote
     border-left: 4px solid $text-tertiary
     background-color: $background-tertiary
+    box-shadow: 0px 0px 5px rgba(black, 0.25)
     padding: 5px 20px
-    margin: 3rem
+    margin: 1rem 1rem
     line-height: 140%
 
 // Custom strikethrough element to customize how it looks.
@@ -60,3 +61,11 @@ input[type="checkbox"]
     &:checked::before
         content: "[x]"
         color: $color2
+
+// For text converted with ansii escape codes
+.bold
+    font-weight: bold
+.italic
+    font-style: italic
+.underline
+    text-decoration: underline
