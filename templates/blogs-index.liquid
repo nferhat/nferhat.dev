@@ -5,7 +5,7 @@
     </head>
 
     <body>
-        <div class=navbar>
+        <div class=navbar-container>
             {% render 'partials/navbar', base_url: site.base_url %}
         </div>
         <div class=content>
@@ -30,7 +30,7 @@
 
                     {% assign rt_seconds = blog.meta.reading_time | modulo: 60 %}
                     {% assign rt_minutes = blog.meta.reading_time | divided_by: 60 %}
-                    <pre class=metadata-no-skew>
+                    <pre class=metadata>
                         {% if blog.release_date != nil -%}
                             {{blog.release_date.year}}/{{
                                 blog.release_date.month | prepend: '0' | slice: -2, 2

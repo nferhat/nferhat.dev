@@ -4,19 +4,24 @@
 
 @import "./colors"
 
+.navbar-container
+    // Centered horizontally
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    display: flex
+    justify-content: center
+    margin-bottom: 100px
+    width: 100%
+
 .navbar
-  // Centered horizontally
-  width: 50%
-  position: absolute
-  left: 50%
-  transform: translateX(-50%)
-  margin-top: 1rem
-  padding: 1rem 2rem
   display: flex
+  border-bottom: 2px solid rgba(white, 0.05)
+  padding: 15px 30px
   // Desktop viewport: keep the content at a fixed 768px width
-  @media (min-width: 900px)
-      flex: 0 0 900px
-      width: 900px
+  @media (min-width: 1000px)
+      flex: 0 0 1000px
+      width: 1000px
 
 .navbar-links
   // Make the items nicely centered in the screen
@@ -36,13 +41,14 @@
     &:hover
       color: $accent
       text-decoration: none
-
       // Add thicker underline effect using border-bottom
       border-bottom: 2px solid $accent
 
 .navbar-me
-    font-family: $mono-font
-
+    font-size: 14pt
+    font-weight: 600
+    font-family: $content-font
+    color: $color7
 .text-tertiary
     color: $text-tertiary
 .text-green

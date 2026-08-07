@@ -1,8 +1,5 @@
 // _headings.sass -*- h tags
 //
-//
-// The actual style is copied from mcyoung's website, at least for the blog title with the
-// skew upwards and the fancy underline. Looks pretty nice
 
 h1, h2, h3, h4, h5, h6
     letter-spacing: -0.025em
@@ -23,8 +20,6 @@ h1, h2, h3, h4, h5, h6
     &.blog-title
         text-decoration: underline $color2 solid 2px
         text-align: center
-    &.skew-up
-        transform: skewY(-3deg)
 
     &:target
         animation: none !important
@@ -38,10 +33,8 @@ h1, h2, h3, h4, h5, h6
     font-family: $mono-font
     color: $text-tertiary
     font-size: 20px
-    transform: skewY(-3deg)
     text-align: center
-    margin-top: 0px
-    margin-top: 10px
+    margin-top: 5px
     margin-bottom: 5rem
     // Make newlines disappear
     white-space: normal
@@ -52,7 +45,6 @@ h1, h2, h3, h4, h5, h6
     font-family: $mono-font
     color: $text-tertiary
     font-size: 20px
-    transform: skewY(-3deg)
     text-align: center
     margin-top: 0px
     margin-bottom: -1rem

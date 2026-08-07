@@ -13,7 +13,7 @@ base-url = "https://nferhat.dev"
 # Static files/content path.
 #
 # This is where you should bundle your images and whatnot.
-# static_root = "./static/"
+static-files = []
 
 [styling]
 # What kind of styling language to use.

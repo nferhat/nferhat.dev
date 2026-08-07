@@ -5,7 +5,7 @@
     </head>
 
     <body>
-        <div class=navbar>
+        <div class=navbar-container>
             {% render 'partials/navbar', base_url: site.base_url %}
         </div>
         <div class=content>
@@ -24,7 +24,7 @@
 
                     {% assign rt_seconds = blog.meta.reading_time | modulo: 60 %}
                     {% assign rt_minutes = blog.meta.reading_time | divided_by: 60 %}
-                    <pre class=metadata-no-skew>
+                    <pre class=metadata>
                         {{blog.meta.word_count}} words &bull;
                         {{rt_minutes}}'{{rt_seconds}}
                         {% for tag in blog.tags -%} &bull; #{{tag}} {% endfor -%}
