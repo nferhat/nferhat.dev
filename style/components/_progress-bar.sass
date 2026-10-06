@@ -1,0 +1,38 @@
+// _progress-bar.sass -*- side bar of blog pages (see static/progress-bar.js)
+//
+// - .progress-rail: thin track, one segment per section, sized by the script.
+// - .progress-segment::after: the on-screen part of the section (--from/--to, set by the script).
+
+// Desktop only, on the left of the content column
+.progress-rail
+    display: none
+    @media (min-width: $column-breakpoint)
+        display: flex
+        flex-direction: column
+        gap: 4px
+        position: fixed
+        top: 5vh
+        left: 3rem
+        width: 2px
+        height: 90vh
+        z-index: 10
+
+.progress-segment
+    flex: 1 1 0
+    min-height: 6px
+    position: relative
+    background-color: $separator
+    // Wider hit area, the segment itself is thin
+    &::before
+        content: ""
+        position: absolute
+        inset: 0 -10px
+    &::after
+        content: ""
+        position: absolute
+        top: var(--from, 0)
+        bottom: calc(100% - var(--to, 0%))
+        left: -1px
+        width: 4px
+        background-color: $accent
+        pointer-events: none

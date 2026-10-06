@@ -31,5 +31,9 @@
                 {% endif -%}
             </main>
         </div>
+
+        {% if page.url contains "blog" -%}
+            <script defer src="/static/progress-bar.js"></script>
+        {% endif -%}
     </body>
 </html>
