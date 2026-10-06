@@ -2,6 +2,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>{{page.title}}</title>
+<meta property="og:site-name" content="nferhat.dev" />
+<meta name="author" content="@nferhat" />
 
 <!-- OpenGraph metadata (translation: bullshit) required
     so that platforms like social media (discord/etc.) create pretty embeds of the
@@ -12,7 +14,7 @@
  -->
 <meta property="og:title" content="{{ page.title }}" />
 {% if page.description != nil -%}
-<meta property="og:description" content="{{  page.description }}" />
+<meta property="og:description" content="{{ page.description }}" />
 <meta name="description" content="{{ page.description }}" />
 {% endif %}
 <meta property="og:type" content="article" />
@@ -24,6 +26,8 @@
 -->
 <link rel="preload" href="{{ build.stylesheet_link }}" as="style">
 <link rel="stylesheet" href="{{ build.stylesheet_link }}" />
+<!-- Also preload fonts. -->
+<link rel="preload" href="/static/fonts/FhtMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- Smooth fullscreen image viewer for .clickable-image elements -->
 <script defer src="/static/lightbox.js"></script>
