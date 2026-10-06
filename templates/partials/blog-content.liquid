@@ -24,3 +24,10 @@
 </pre>
 
 {{page.contents}}
+
+{% if page.meta.has_math == true -%}
+<!-- Djot emits math as raw LaTeX inside span.math, convert it to MathML (Temml) -->
+<link rel="stylesheet" href="/static/temml/Temml-FiraMath.css" />
+<script src="/static/temml/temml.min.js"></script>
+<script src="/static/temml/render-math.js"></script>
+{% endif -%}

@@ -24,7 +24,7 @@
 
                     {% assign rt_seconds = blog.meta.reading_time | modulo: 60 %}
                     {% assign rt_minutes = blog.meta.reading_time | divided_by: 60 %}
-                    <pre class=metadata>
+                    <pre class=metadata-no-skew>
                         {{blog.meta.word_count}} words &bull;
                         {{rt_minutes}}'{{rt_seconds}}
                         {% for tag in blog.tags -%} &bull; #{{tag}} {% endfor -%}
