@@ -7,18 +7,27 @@
 // Nothing, just put a vertical bar before it.
 blockquote
     border-left: 4px solid $text-tertiary
-    background-color: $background-tertiary
+    background-color: rgba($background-tertiary, 0.75)
     box-shadow: 0px 0px 5px rgba(black, 0.25)
     padding: 5px 20px
     margin: 1rem 1rem
     line-height: 140%
 
-// Custom strikethrough element to customize how it looks.
-.strikethrough
-    text-decoration-line: line-through
-    text-decoration-color: $text-secondary
-    text-decoration-thickness: 3px
+ins
+    text-decoration-line: underline
+    text-decoration-color: $text-tertiary
+    text-decoration-thickness: 2px
     text-decoration-style: solid
+    text-underline-offset: 4px
+del
+    text-decoration-line: line-through
+    text-decoration-color: $text-tertiary
+    text-decoration-thickness: 2px
+    text-decoration-style: solid
+mark
+    font-weight: 600
+    background-color: $color3
+    padding: 0px 4px
 
 
 // Horizontal Ruler/Thematic Break
@@ -40,7 +49,6 @@ a
     text-decoration: underline $color4 solid 2px
 .clean-link
     text-decoration: none
-
 
 
 // Checkboxes
