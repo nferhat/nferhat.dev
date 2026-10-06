@@ -1,26 +1,85 @@
-// Footnote references and definitions
+// _footnotes.sass -*- footnote references, and the two ways of showing the notes
+// (see static/footnotes.js)
+//
+// - When there is enough empty space on the right of the content column ($sidenote-min), notes are
+//   shown there, next to their reference: .sidenote
+// - Otherwise, they are shown at the end of the section they are in: .footnote-inline
+
+@use 'sass:math'
+
+// Smallest empty space on the right of the content needed to show sidenotes
+$sidenote-min: 250px
+// Space around a sidenote: between it and the content, and between it and the edge of the screen
+$sidenote-gap: 1rem
+// Free space on the right of the content column, see $content-offset in _layout
+$right-space: calc((100vw - #{$column-width}) * #{1 - $content-offset})
+// Viewport width from which the right space is at least $sidenote-min
+$sidenote-breakpoint: $column-width + math.div($sidenote-min, 1 - $content-offset)
+$sidenote-width: min(300px, calc(#{$right-space} - #{2 * $sidenote-gap}))
+
 a.footnote-ref
     text-decoration: none
     font-family: $mono-font
     font-size: 85%
     color: $accent
+    // (1) instead of 1
+    sup::before
+        content: "("
+    sup::after
+        content: ")"
 .footnote-back
     text-decoration: none
     font-family: $mono-font
     font-weight: 900
     font-size: 85%
-    margin-left: 10px
     color: $text-tertiary
-// The actual ID the footnote, it looks like a (<ID>) and it should be not "really" visible
+// The number of the footnote, it should be not "really" visible
 .footnote-id
-    font-family: monospace
+    font-family: $mono-font
     color: $text-tertiary
     font-size: 80%
     user-select: none
-    margin-right: 10px
-// Make everything inside the footnote container act with inline-block.
-//
-// Paragraphs (and many other elements by default) have display:block default, which means it will
-// break into a newline on each element. This allows everything to fit in a single line.
-.footnote > *
-    display: inline
+    &::before
+        content: "("
+    &::after
+        content: ")"
+
+.sidenote, .footnote-inline
+    color: $text-secondary
+    font-size: 15px
+    line-height: 1.4
+    // Notes are short, avoid paragraphs spacing
+    p
+        margin: 0 0 0.5em
+        &:last-child
+            margin-bottom: 0
+    // Let wide content (code blocks) scroll instead of stretching the note
+    > div
+        min-width: 0
+    pre
+        overflow-x: auto
+
+// On the right of the content, level with the reference.
+.sidenote
+    display: none
+    @media (min-width: $sidenote-breakpoint)
+        display: flex
+        gap: 0.6rem
+        float: right
+        // Notes close to each other stack instead of overlapping
+        clear: right
+        width: $sidenote-width
+        // Push the note out of the content: (the padding of .content) + the gap
+        margin-right: calc(-1 * (#{$sidenote-width} + 3rem + #{$sidenote-gap}))
+        .footnote-id
+            padding-top: 0.2em
+
+// At the end of the section.
+.footnote-inline
+    display: flex
+    gap: 0.6rem
+    margin: 0.75rem 0
+    padding-left: 0.75rem
+    border-left: 2px solid $separator
+    @media (min-width: $sidenote-breakpoint)
+        display: none
