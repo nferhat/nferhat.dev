@@ -13,11 +13,15 @@
     justify-content: center
     margin-bottom: 100px
     width: 100%
+    // Above the fade at the top of the viewport (see `body::after` in _layout.sass)
+    z-index: 10
 
 .navbar
   display: flex
   width: 100%
   border-bottom: 2px solid rgba(white, 0.05)
+  // Fade the line out towards both ends so it blends into the page like the content edges
+  border-image: linear-gradient(to right, transparent, rgba(white, 0.05) 25%, rgba(white, 0.05) 75%, transparent) 1
   padding: 15px 30px
   // Desktop viewport: keep the content at a fixed 768px width
   @media (min-width: 1000px)

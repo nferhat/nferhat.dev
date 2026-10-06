@@ -16,6 +16,23 @@ h1, h2, h3, h4, h5, h6
     margin-bottom: 0
     width: 100%
     transition: all ease 0.12s
+    // Anchor for the hashtag marker below.
+    position: relative
+
+    // A `#` that hangs in the left padding of the content, so that the heading text
+    // stays aligned with the paragraphs. Being absolutely positioned, it also doesn't
+    // inherit the underline of the heading.
+    &::before
+        content: "#"
+        position: absolute
+        right: 100%
+        padding-right: 0.6em
+        color: $text-tertiary
+        text-decoration: none
+        user-select: none
+
+    &.blog-title::before
+        content: none
 
     &.blog-title
         text-decoration: underline $color2 solid 2px
