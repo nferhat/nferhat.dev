@@ -8,9 +8,15 @@
 
 // breakpoint for content and viewport.
 // if the viewport is larger than the content we have filler line grid
-$column-width: 1000px
-$column-breakpoint: 1100px
-$grid-line: rgba(white, 0.025)
+$column-width: 1050px
+$column-breakpoint: 1050px
+$grid-line: rgba($accent, 0.015)
+// Fraction of the free space (viewport minus column) placed on the left of the column.
+$content-offset: 0.175
+// Desktop: how far down the screen the page title sits (from the top of the viewport)
+$title-position: 22vh
+// Right edge of the column, from the left of the viewport
+$content-right-edge: calc((100vw - #{$column-width}) * #{$content-offset} + #{$column-width})
 
 *
     box-sizing: border-box
@@ -30,17 +36,15 @@ body
 
 // The line grid. Not gonna lie by css-fu is weak I asked a clanker how todo this XD
 body::before
-    --g: calc((100vw - #{$column-width}) / 2)
     content: ""
     position: fixed
     inset: 0
     z-index: -1
     pointer-events: none
     background-image: linear-gradient($grid-line 2px, transparent 2px), linear-gradient(90deg, $grid-line 2px, transparent 2px)
-    background-size: 32px 32px
-    // Fade the grid out towards the content column instead of cutting it off at the edge
-    $grid-mask: linear-gradient(to right, black 0, transparent var(--g), transparent calc(100% - var(--g)), black 100%)
-    mask-image: $grid-mask
+    background-size: 48px 48px
+    // Only keep the grid on the right of the column, with a short fade past its edge
+    mask-image: linear-gradient(to right, transparent $content-right-edge, black calc(#{$content-right-edge} + 100px))
     @media (max-width: $column-breakpoint - 1px)
         display: none
 
@@ -68,6 +72,12 @@ body::after
     @media (min-width: $column-breakpoint)
         flex: 0 0 $column-width
         width: $column-width
+        // Push the content down so the first heading lands around $title-position. 4rem is
+        // roughly what sits above a heading (the post metadata line + the heading margin).
+        padding-top: max(5rem, calc(#{$title-position} - 4rem))
+        // Shift the column towards the left, see $content-offset
+        margin-left: calc((100vw - #{$column-width}) * #{$content-offset})
+        margin-top: calc((100vh - #{$column-width}) * #{$content-offset})
 
 ::-moz-selection, ::selection
     background-color: rgba(color.scale($accent, $saturation:-20%), 0.1)

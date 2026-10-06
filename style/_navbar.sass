@@ -1,59 +1,32 @@
 // _navbar.sass -*- styling for the navbar
-// I am no web dev, most of these are copied from w3s and whatever copilot web
-// could give me.
 
 @import "./colors"
 
 .navbar-container
-    // Centered horizontally
     position: absolute
-    left: 50%
-    transform: translateX(-50%)
-    display: flex
-    justify-content: center
-    margin-bottom: 100px
-    width: 100%
+    top: 0
+    right: 0
+    margin: 30px 60px
     // Above the fade at the top of the viewport (see `body::after` in _layout.sass)
     z-index: 10
 
 .navbar
-  display: flex
-  width: 100%
-  border-bottom: 2px solid rgba(white, 0.05)
-  // Fade the line out towards both ends so it blends into the page like the content edges
-  border-image: linear-gradient(to right, transparent, rgba(white, 0.05) 25%, rgba(white, 0.05) 75%, transparent) 1
-  padding: 15px 30px
-  // Desktop viewport: keep the content at a fixed 768px width
-  @media (min-width: 1000px)
-      flex: 0 0 1000px
-      width: 1000px
-
-.navbar-links
-  // Make the items nicely centered in the screen
-  display: flex
-  justify-content: center
-  border-radius: 0
-  box-sizing: border-box
-  gap: 1rem
-  width: fit-content
-  margin-left: auto
-
-  // Make anchor tags use the accent color
-  a
-    color: $accent
-    text-decoration: none
-
-    &:hover
-      color: $accent
-      text-decoration: none
-      // Add thicker underline effect using border-bottom
-      border-bottom: 2px solid $accent
+    display: flex
+    gap: 2rem
+    font-family: $mono-font
+    font-size: 16pt
 
 .navbar-me
-    font-size: 14pt
+    color: $text-primary
     font-weight: 600
-    font-family: $content-font
-    color: $color7
+    text-decoration: none
+
+.navbar-link
+    color: $text-tertiary
+    text-decoration: none
+    &:hover
+        color: $accent
+
 .text-tertiary
     color: $text-tertiary
 .text-green

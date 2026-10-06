@@ -19,7 +19,7 @@
 
             {% for blog in pages %}
                 {% if blog.url contains "blog" and blog.url != "blog/index.html" and blog.url != "blog/tags.html" -%}
-                    <a class="colorless-link" href="/{{blog.url}}">
+                    <a class="colorless-link" href="/{{blog.url}}" interestfor="preview-{{forloop.index}}">
                         {% if blog.draft %}
                             <span class=blog-list-marker-draft># </span>
                         {% else %}
@@ -28,9 +28,15 @@
                         <h3 class=blog-title-list>{{blog.title}}</h3>
                     </a>
 
+                    {% if blog.description != nil -%}
+                        <div id="preview-{{forloop.index}}" class=link-preview popover=hint>
+                            {{blog.description}}
+                        </div>
+                    {% endif %}
+
                     {% assign rt_seconds = blog.meta.reading_time | modulo: 60 %}
                     {% assign rt_minutes = blog.meta.reading_time | divided_by: 60 %}
-                    <pre class=metadata-no-skew>
+                    <pre class=metadata>
                         {% if blog.release_date != nil -%}
                             {{blog.release_date.year}}/{{
                                 blog.release_date.month | prepend: '0' | slice: -2, 2
