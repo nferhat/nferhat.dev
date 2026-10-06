@@ -1,7 +1,0 @@
-{
-  "languages": {
-    "Markdown": {
-      "language_servers": ["marksman"],
-    },
-  },
-}
