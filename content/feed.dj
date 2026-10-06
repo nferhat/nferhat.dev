@@ -1,0 +1,5 @@
++++
+title = "nferhat's blog"
+template = "feed"
+output-ext = "xml"
++++
