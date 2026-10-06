@@ -7,6 +7,11 @@
     top: 0
     right: 0
     margin: 30px 60px
+    // Small screens: the whole width, with the links spread over it
+    @media (max-width: $column-breakpoint - 1px)
+        left: 0
+        margin: 0
+        padding: 16px 1.25rem
     // Above the fade at the top of the viewport (see `body::after` in _layout.sass)
     z-index: 10
 
@@ -15,6 +20,10 @@
     gap: 2rem
     font-family: $mono-font
     font-size: 16pt
+    @media (max-width: $column-breakpoint - 1px)
+        justify-content: center
+    @media (max-width: 600px)
+        font-size: 12pt
 
 .navbar-me
     color: $text-primary
