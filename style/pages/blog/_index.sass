@@ -1,6 +1,5 @@
-// _blog-index.sass -*- styles for the blog/index.html page
+// blog/_index.sass -*- styles shared by the blog listings (index, tags) and blog pages
 
-@import "tags"
 
 .blog-list-marker
     font-family: $mono-font
@@ -24,35 +23,8 @@
         text-decoration: underline $color3 solid 2px
 
 .funny-message
-    font-family: 'Fht Mono', monospace
+    font-family: $mono-font
     color: rgba($text-tertiary, 0.5)
     width: 100%
     margin-top: 100px
     text-align: center
-
-// Hover card for blog entries. Uses the native interest invokers (`interestfor`) with a hint
-// popover, implicitly anchored to the hovered link. Browsers without support just show nothing.
-.link-preview
-    // Reset the UA popover styles (centered, inset: 0, etc.)
-    margin: 0
-    inset: auto
-    position-area: bottom span-right
-    margin-top: 8px
-    max-width: 400px
-    padding: 10px 14px
-    border: 1px solid $separator
-    border-radius: 8px
-    background-color: $background-secondary
-    color: $text-secondary
-    font-size: 15px
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5)
-    // Flip below/above if there's no room
-    position-try-fallbacks: flip-block
-    // Fade in when shown. (Not @starting-style: the minifier strips the at-rule and leaves
-    // `opacity: 0` on :popover-open, making the card invisible.)
-    &:popover-open
-        animation: link-preview-in 0.15s
-
-@keyframes link-preview-in
-    from
-        opacity: 0

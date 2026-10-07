@@ -4,8 +4,6 @@
 
 @use 'sass:color'
 
-@import "./colors"
-
 // breakpoint for content and viewport.
 // if the viewport is larger than the content we have filler line grid
 $column-width: 1050px
@@ -25,13 +23,12 @@ $content-right-edge: calc((100vw - #{$column-width}) * #{$content-offset} + #{$c
 // will be at flex-end. This achieves the look im searching for
 body
     margin: 0
-    line-height: 140%
     display: flex
     min-height: 100vh
     background-color: $background-primary
     color: $text-secondary
-    font-size: 20px
-    line-height: 170%
+    font-size: 16px
+    line-height: 155%
     font-family: $content-font
 
 // The line grid. Not gonna lie by css-fu is weak I asked a clanker how todo this XD
@@ -62,7 +59,6 @@ body::after
     // Center the content in the screen by using flexbox
     flex: 1
     margin: 0rem auto
-    padding-top: 5.5rem
     // The side padding is wide enough to hold the `#` that hangs before headings
     padding: 5rem 3rem
     width: 100%

@@ -10,13 +10,23 @@
     text-decoration: underline rgba($separator, 0.01) solid 2px
     &:hover
         text-decoration: underline $separator solid 2px
+    &::before
+      content: ""
+
+// Fixed width, so the entry list below can be indented by exactly the same amount
+// and line up with the tag name.
+$tag-marker-width: 2.5rem
+
 // Make the tags always monospace, just for the style
 .blog-tag-marker
+    display: inline-block
+    width: $tag-marker-width
     font-family: $mono-font
     font-size: 24px
     user-select: none
     font-weight: 700
     color: $separator
+
 // This piece of code makes it so when we are targetting a specific tag, highlight
 // it with some nice sleek red. For example if you do /blog/tags#tag-linux, it would
 // highlight the linux tag section in red.
@@ -28,4 +38,4 @@
 
 // Container of the list of blogs here.
 .matching-pages
-    margin-left: 20px
+    margin-left: $tag-marker-width

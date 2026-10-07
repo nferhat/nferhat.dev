@@ -32,4 +32,9 @@ root-file = "./style/style.sass"
 load-paths = []
 # Fonts to bundle with the styling. These will be minified and subsetted in order to
 # have the smallest footprint possible.
-bundle-fonts = ["./static/fonts/FhtMono-Regular.woff2"]
+bundle-fonts = [
+    "./static/fonts/FhtMono-Regular.woff2",
+    "./static/fonts/FhtMono-Bold.woff2",
+    "./static/fonts/FhtMono-BoldItalic.woff2",
+    "./static/fonts/FhtMono-Italic.woff2",
+]

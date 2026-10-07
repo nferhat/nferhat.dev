@@ -1,0 +1,32 @@
+<!doctype html>
+<html prefix="og: https://ogp.me/ns#" lang="en">
+    <head>
+        {% render 'partials/head', page: page, base_url: site.base_url, build: build %}
+    </head>
+
+    <body>
+        {% render 'partials/navbar', base_url: site.base_url %}
+
+        <div class=content>
+            <h1 class="blog-title">nferhat's blogs</h1>
+            <p>
+                Here you can find me ramble about all sort of stuff. From tech news to cool optimizations I might fight,
+                perhaps shoutout a cool project I stumble across, or perhaps just talk about being human.
+            </p>
+
+            <hr>
+
+            {% for blog in pages %}
+                {% if blog.url contains "blog" and blog.url != "blog/index.html" and blog.url != "blog/tags.html" -%}
+                    <a class="colorless-link" href="/{{blog.url}}" interestfor="preview-{{forloop.index}}">
+                        <h3 class="blog-title-list {% if blog.draft %}draft{% endif %}">{{blog.title}}</h3>
+                    </a>
+
+                    {% render 'partials/blog/metadata', blog: blog %}
+                {%endif %}
+            {% endfor %}
+
+            <p class=funny-message>you have nothing to see here...</p>
+        </div>
+    </body>
+</html>

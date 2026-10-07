@@ -1,0 +1,13 @@
+{% assign rt_seconds = blog.meta.reading_time | modulo: 60 -%}
+{% assign rt_minutes = blog.meta.reading_time | divided_by: 60 -%}
+
+<pre class=metadata>
+    {% if blog.draft -%}
+        Soon<sup>TM</sup> &bull;
+    {% elsif blog.release_date != nil -%}
+        {{blog.release_date.year}}/{{ blog.release_date.month | prepend: '0' | slice: -2, 2 }}/{{ blog.release_date.day | prepend: '0' | slice: -2, 2 }} &bull;
+    {% endif -%}
+    {{blog.meta.word_count}} words &bull;
+    {{rt_minutes}}'{{rt_seconds}}
+    {% for tag in blog.tags -%} &bull; <a class="colorless-link" href="/blog/tags.html#tag-{{tag}}">#{{tag}}</a> {% endfor -%}
+</pre>

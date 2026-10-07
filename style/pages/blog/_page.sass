@@ -1,0 +1,26 @@
+// blog/_page.sass -*- style for a blog article page
+
+// metadata about the blog.
+.metadata
+    font-family: $mono-font
+    color: $text-tertiary
+    font-size: 18px
+    margin-top: 5px
+    // Make newlines disappear
+    white-space: normal
+
+// draft text at the bottom right of the page, sticky/fixed
+.draft-text
+    position: fixed
+    bottom: 0
+    right: 0
+    padding: 0px 30px
+    font-family: $mono-font
+    color: $text-tertiary
+    font-size: 20px
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8)
+    // Make newlines disappear
+    white-space: normal
+    @media (max-width: $column-breakpoint - 1px)
+      // I mean it doesn't matter if its on mobile really
+      opacity: 0

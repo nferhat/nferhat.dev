@@ -5,11 +5,7 @@
     </head>
 
     <body>
-        <nav role=navigation>
-            <div class=navbar-container>
-                {% render 'partials/navbar', base_url: site.base_url %}
-            </div>
-        </nav>
+        {% render 'partials/navbar', base_url: site.base_url %}
 
         <!-- Support div for the lightbox -->
         <div id="lightbox" class="lightbox hidden">
@@ -25,7 +21,7 @@
         <div class=content>
             <main role=main>
                 {% if page.url contains "blog" -%}
-                    {% render 'partials/blog-content', page: page %}
+                    {% render 'partials/blog/page', blog: page %}
                 {% else -%}
                     {{page.contents}}
                 {% endif -%}

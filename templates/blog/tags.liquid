@@ -1,13 +1,12 @@
 <!doctype html>
-<html prefix="og: https://ogp.me/ns#">
+<html prefix="og: https://ogp.me/ns#" lang="en">
     <head>
         {% render 'partials/head', page: page, base_url: site.base_url, build: build %}
     </head>
 
     <body>
-        <div class=navbar-container>
-            {% render 'partials/navbar', base_url: site.base_url %}
-        </div>
+        {% render 'partials/navbar', base_url: site.base_url %}
+
         <div class=content>
             {% for tag in site.all_tags %}
                 <div id="tag-{{tag}}" class="blog-tag-header-container">
@@ -20,8 +19,7 @@
                     {% for blog in pages %}
                         {% if blog.url contains "blog" and blog.tags contains tag  -%}
                             <a class="colorless-link" href="/{{blog.url}}">
-                                <h3 class="blog-title-list {% if page.draft %}draft{%endif%}">{{blog.title}}</h3>
-                                <br>
+                                <h3 class="blog-tag-list-entry {% if blog.draft %}draft{% endif %}">{{blog.title}}</h3>
                             </a>
                             <br>
                         {% endif %}
