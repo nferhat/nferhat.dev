@@ -57,14 +57,17 @@ h1, h2, h3, h4, h5, h6
     // Make newlines disappear
     white-space: normal
 
-// Little metadata at the top of the page.
-// This comes here because its tied with the blog-title class
 .draft-text
+    position: fixed
+    bottom: 0
+    right: 0
+    padding: 0px 30px
     font-family: $mono-font
     color: $text-tertiary
     font-size: 20px
-    text-align: center
-    margin-top: 0px
-    margin-bottom: -1rem
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8)
     // Make newlines disappear
     white-space: normal
+    @media (max-width: $column-breakpoint - 1px)
+      // I mean it doesn't matter if its on mobile really
+      opacity: 0

@@ -3,6 +3,19 @@
 // - .progress-rail: thin track, one segment per section, sized by the script.
 // - .progress-segment::after: the on-screen part of the section (--from/--to, set by the script).
 
+// disable the browser sidebar if we can show our custom progressbar
+@media (min-width: $column-breakpoint)
+    html:has(.progress-rail)
+        scrollbar-width: none
+        &::-webkit-scrollbar
+            display: none
+// still dont neglect the browser sidebar and style it a minimum
+// 4 lines of code to make your website look 100x more polished
+@media (max-width: $column-breakpoint - 1px)
+    html
+        scrollbar-width: thin
+        scrollbar-color: $accent $separator
+
 // Desktop only, on the left of the content column
 .progress-rail
     display: none

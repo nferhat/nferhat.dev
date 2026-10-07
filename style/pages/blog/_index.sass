@@ -2,13 +2,6 @@
 
 @import "tags"
 
-.blog-list-marker-draft
-    font-family: $mono-font
-    font-weight: 700
-    font-style: italic
-    user-select: none
-    color: $color3
-
 .blog-list-marker
     font-family: $mono-font
     user-select: none
@@ -27,6 +20,8 @@
     display: inline
     &:hover
         text-decoration: underline $color4 solid 2px
+    &.draft
+        text-decoration: underline $color3 solid 2px
 
 .funny-message
     font-family: 'Fht Mono', monospace

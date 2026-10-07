@@ -3,12 +3,13 @@
 @import "./colors"
 
 .navbar-container
-    position: absolute
+    position: fixed
     top: 0
     right: 0
     margin: 30px 60px
     // Small screens: the whole width, with the links spread over it
     @media (max-width: $column-breakpoint - 1px)
+        position: absolute
         left: 0
         margin: 0
         padding: 16px 1.25rem

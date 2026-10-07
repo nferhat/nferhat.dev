@@ -12,7 +12,7 @@ $column-width: 1050px
 $column-breakpoint: 1050px
 $grid-line: rgba($accent, 0.015)
 // Fraction of the free space (viewport minus column) placed on the left of the column.
-$content-offset: 0.175
+$content-offset: 0.1
 // Desktop: how far down the screen the page title sits (from the top of the viewport)
 $title-position: 22vh
 // Right edge of the column, from the left of the viewport
@@ -30,8 +30,8 @@ body
     min-height: 100vh
     background-color: $background-primary
     color: $text-secondary
-    font-size: 17px
-    line-height: 150%
+    font-size: 20px
+    line-height: 170%
     font-family: $content-font
 
 // The line grid. Not gonna lie by css-fu is weak I asked a clanker how todo this XD
@@ -83,6 +83,7 @@ body::after
         // Push the content down so the first heading lands around $title-position. 4rem is
         // roughly what sits above a heading (the post metadata line + the heading margin).
         padding-top: max(5rem, calc(#{$title-position} - 4rem))
+        padding-left: 5rem
         // Shift the column towards the left, see $content-offset
         margin-left: calc((100vw - #{$column-width}) * #{$content-offset})
         margin-top: calc((100vh - #{$column-width}) * #{$content-offset})

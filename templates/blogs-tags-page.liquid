@@ -20,12 +20,7 @@
                     {% for blog in pages %}
                         {% if blog.url contains "blog" and blog.tags contains tag  -%}
                             <a class="colorless-link" href="/{{blog.url}}">
-                                {% if blog.draft %}
-                                    <span class=blog-list-marker-draft># </span>
-                                {% else %}
-                                    <span class=blog-list-marker># </span>
-                                {% endif %}
-                                <h3 class=blog-title-list>{{blog.title}}</h3>
+                                <h3 class="blog-title-list {% if page.draft %}draft{%endif%}">{{blog.title}}</h3>
                                 <br>
                             </a>
                             <br>

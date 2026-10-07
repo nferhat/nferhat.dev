@@ -3,13 +3,24 @@
 @import "../colors"
 
 table
-    border: 3px solid $separator
-    border-collapse: collapse
-    width: 100%
     // Wide tables scroll on their own instead of making the page wider
     display: block
     max-width: 100%
     overflow-x: auto
+
+    // A block <table> wraps its rows in an anonymous table that only fits its content. Make the
+    // body the real table instead, so that it fills the width (and still overflows the wrapper).
+    > tbody
+        display: table
+        width: 100%
+        border: 3px solid $separator
+        border-collapse: collapse
+
+    > caption
+        display: block
+        text-align: left
+        padding: 4px 0
+        color: $text-secondary
 
 th
     font-weight: bold

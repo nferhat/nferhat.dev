@@ -3,7 +3,11 @@
 // They feature a popout effect. When you hover the image, it will "pop out" of the layout,
 // and become bigger, in order to inspect the image properly. It's just nice I guess
 .image-container
-    display: inline-flex
+    // Block-level but shrink-wrapped, so auto margins center it in the content column
+    display: flex
+    width: fit-content
+    max-width: 100%
+    margin-inline: auto
     flex-direction: column
     align-items: center
     text-align: center

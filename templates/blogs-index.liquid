@@ -1,5 +1,5 @@
 <!doctype html>
-<html prefix="og: https://ogp.me/ns#">
+<html prefix="og: https://ogp.me/ns#" lang="en">
     <head>
         {% render 'partials/head', page: page, base_url: site.base_url, build: build %}
     </head>
@@ -20,12 +20,7 @@
             {% for blog in pages %}
                 {% if blog.url contains "blog" and blog.url != "blog/index.html" and blog.url != "blog/tags.html" -%}
                     <a class="colorless-link" href="/{{blog.url}}" interestfor="preview-{{forloop.index}}">
-                        {% if blog.draft %}
-                            <span class=blog-list-marker-draft># </span>
-                        {% else %}
-                            <span class=blog-list-marker># </span>
-                        {% endif %}
-                        <h3 class=blog-title-list>{{blog.title}}</h3>
+                        <h3 class="blog-title-list {% if blog.draft %}draft{% endif %}">{{blog.title}}</h3>
                     </a>
 
                     {% if blog.description != nil -%}
