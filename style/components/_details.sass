@@ -1,0 +1,48 @@
+
+details
+    background-color: $background-secondary
+    padding: 10px
+    border-radius: 8px
+    box-shadow: 0px 0px 5px rgba(black, 0.25)
+    transition: all 0.15s ease
+
+// Collapsible details Swap the default triangle with a caret.
+details > summary
+    list-style: none
+    cursor: pointer
+
+    &::-webkit-details-marker
+        display: none
+
+    &::before
+        content: ">"
+        display: inline-block
+        margin-right: 12px
+        margin-left: 8px
+        font-family: $mono-font
+        color: $text-tertiary
+        transition: transform 0.15s ease
+
+details[open] > summary::before
+    color: $accent
+    transform: rotate(90deg)
+
+// eyeballing wooooooooooo
+details > :not(summary)
+    margin-top: 0
+    margin-bottom: 0
+    margin-left: calc(0.25rem + 8px)
+    padding: 0.5rem 1.5rem
+    border-left: 2px solid $separator
+
+:root
+    interpolate-size: allow-keywords
+
+details::details-content
+    height: 0
+    overflow: clip
+    transition: height 0.2s ease, content-visibility 0.2s allow-discrete
+
+details[open]::details-content
+    height: auto
+

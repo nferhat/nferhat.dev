@@ -80,35 +80,6 @@ input[type="checkbox"]
 .underline
     text-decoration: underline
 
-
-// Collapsible details Swap the default triangle with a caret.
-details > summary
-    list-style: none
-    cursor: pointer
-
-    &::-webkit-details-marker
-        display: none
-
-    &::before
-        content: ">"
-        display: inline-block
-        margin-right: 8px
-        font-family: $mono-font
-        color: $text-tertiary
-        transition: transform 0.15s ease
-
-details[open] > summary::before
-    color: $accent
-    transform: rotate(90deg)
-
-// eyeballing wooooooooooo
-details > :not(summary)
-    margin-top: 0
-    margin-bottom: 0
-    margin-left: 0.25rem
-    padding: 0.5rem 1.5rem
-    border-left: 2px solid $separator
-
 // Temml's MathML renders small next to the body text, scale all of it (inline and display)
 math
     font-size: 1.25em
