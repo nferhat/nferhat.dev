@@ -2,7 +2,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 <meta name="text-scale" content="scale" />
-<title>{{page.title}} | nferhat.dev</title>
+<title>{{ page.title | strip_html }} | nferhat.dev</title>
 
 <!-- The compiler handles stylesheets automatically.
     We compile down SASS (that is passed to the CLI) into a minified CSS file.
@@ -20,7 +20,7 @@
 
     Of course, it's generate from the rust side.
  -->
-<meta property="og:title" content="{{ page.title }}" />
+<meta property="og:title" content="{{ page.title | strip_html | escape }}" />
 <meta property="og:site-name" content="nferhat.dev" />
 <meta name="author" content="@nferhat" />
 {% if page.description != nil -%}

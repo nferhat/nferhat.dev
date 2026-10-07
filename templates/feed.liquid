@@ -16,7 +16,7 @@
     {% for blog in pages -%}
         {% if blog.url contains "blog/" and blog.url != "blog/index.html" and blog.url != "blog/tags.html" and blog.draft == false -%}
             <entry>
-                <title>{{ blog.title | escape }}</title>
+                <title>{{ blog.title | strip_html | escape }}</title>
                 <id>{{ site.base_url }}/{{ blog.url }}</id>
                 <link href="{{ site.base_url }}/{{ blog.url }}" />
                 <updated>{{ blog.release_date.year }}-{{ blog.release_date.month | prepend: '0' | slice: -2, 2 }}-{{ blog.release_date.day | prepend: '0' | slice: -2, 2 }}T00:00:00Z</updated>

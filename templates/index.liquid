@@ -6,17 +6,7 @@
 
     <body>
         {% render 'partials/navbar', base_url: site.base_url %}
-
-        <!-- Support div for the lightbox -->
-        <div id="lightbox" class="lightbox hidden">
-          <div class="lightbox-content">
-            <div class="lightbox-info">
-              <div id="lightbox-title" class="lightbox-title"></div>
-              <div id="lightbox-filename" class="lightbox-filename"></div>
-            </div>
-            <img id="lightbox-img" src="" alt="">
-          </div>
-        </div>
+        {% render 'partials/lightbox' %}
 
         <div class=content>
             <main role=main>
@@ -27,10 +17,5 @@
                 {% endif -%}
             </main>
         </div>
-
-        {% if page.url contains "blog" -%}
-            <script defer src="/static/footnotes.js"></script>
-            <script defer src="/static/progress-bar.js"></script>
-        {% endif -%}
     </body>
 </html>

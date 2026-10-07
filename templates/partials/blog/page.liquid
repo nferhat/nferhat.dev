@@ -10,6 +10,9 @@
 
 {{blog.contents}}
 
+<script defer src="/static/footnotes.js"></script>
+<script defer src="/static/progress-bar.js"></script>
+
 {% if blog.meta.has_math == true -%}
     <!-- Djot emits math as raw LaTeX inside span.math, convert it to MathML (Temml) -->
     <script src="/static/temml/temml.min.js"></script>
