@@ -1,0 +1,162 @@
++++
+title = "A better way to use home-manager and NixOS"
+description = "Insights of my first ever hackathon"
+tags  = ["linux", "nixos"]
+release-date = "2026-10-06"
+draft = false
++++
+
+I personally make use of [NixOS][nixos] with [home-manager][hm] to manage my different systems. I
+think it's really nice, but the goal of this post isn't to sell you NixOS (or Nix in general).
+
+I believe I found a better, nicer way to achieve what we want
+
+[nixos]: https://nixos.org
+[hm]: https://github.com/nix-community/home-manager
+
+## The current "status quo"
+
+Most users will set this up by following the [example setup][hm-example-nixos]. In short, you get
+the home-manager NixOS module (either with channels or flakes), and import it in your system config:
+
+[hm-example-nixos]: https://nix-community.github.io/home-manager/nix-flakes/nixos.html
+
+```nix
+{ ... }: let
+  home-manager = import <home-manager>;
+  # or use flakes with inputs.home-manager
+in {
+
+  imports = [
+    home-manager.nixosModules.default
+  ];
+
+  users.users."nferhat" = {
+    isNormalUser = true;
+    extraGroups = ["wheel"];
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {inherit self inputs;};
+    users."nferhat" = /path/to/home.nix;
+  };
+}
+```
+
+Then, in `home.nix` you would use the home-manager provided modules.
+
+```nix
+{ ... }: {
+  imports = [fht-compositor.homeModules.default];
+  programs.neovim.enable = true;
+  programs.fht-compositor.settings = { ... };
+}
+```
+
+However, this introduces a hard split between your system config and user config that should not exist.
+They both should be coupled (which in practice, _it is_), but semantically, it is not: they exist in
+different files/modules. \
+When changing/adding something to your home configuration, you don't immediatly think "hmm maybe this
+also needs some system service"
+
+Moreover, a lot of options/modules that are _included_ in home-manager the issue of needing something,
+in the system configuration. For example, setting the GTK3/4 theme require [`dconf`][dconf] to be installed and available in the
+systemd services' `$PATH`
+
+[dconf]: https://wiki.gnome.org/Projects/dconf
+
+## What do we do then?
+
+> **NOTE**: What I am about to say isn't particularly new or "original", but I still believe I
+added some nice value to make this system work better.
+
+What I resorted to is to couple my home-manager and system configuration together, in "modules": not
+the ones that declare options, but instead as configuration pieces imported by my hosts.
+
+You could already do this using `home-managers.users."name"`{=nix}, but adding an alias makes it much
+easier/faster to type. This is pretty straightforward todo: in your system config, add this line:
+
+```nix
+{ lib, ... }: {
+  imports = [(lib.mkAliasOptionModule ["nferhat"] ["home-manager" "users" "nferhat"])]
+}
+```
+
+This also adds a way to ---at a glance--- know if I'm configuring for my system or for my user. (based
+on the presence/absence of the `<name>` prefix), which helps very much since both HM and NixOS modules
+share the same conventions: `programs.*`, `services.*`, ...
+
+However, this still isn't the most ergonomic, there's a lot of redundancy, especially when using using
+stuff inside `home.*`: `nferhat.home.packages`, `nferhat.home.shellAliases`, etc.:
+
+The solution is blissfully simple: *more* aliases! This time scoped for home-manager:
+
+```nix
+{
+  nferhat.imports = [
+    # Aliases to make things even more streamlined.
+    (lib.mkAliasOptionModule ["packages"] ["home" "packages"])
+    (lib.mkAliasOptionModule ["shellAliases"] ["home" "shellAliases"])
+    (lib.mkAliasOptionModule ["configFile"] ["xdg" "configFile"])
+  ];
+}
+```
+
+These are the ones I set up for now, and now configuring stuff is really, really nice, take for
+example my neovim config:
+
+```nix
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  # This is NixOS' neovim module.
+  # This does nothing special. Sets $EDITOR, and makes sure plugins installed in the $NIX_PATH can
+  # be loaded by neovim. User configuration is linked from the flake.
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+  };
+
+  # needed to build TS grammars.
+  environment.systemPackages = [pkgs.gcc pkgs.tree-sitter];
+  nferhat.configFile."nvim".source = lib.fht.linkTo "/my/nvim/config";
+
+  # --- snip: other stuff for custom theme, doesnt matter. much ---
+}
+```
+This is self-contained, simple, and easy to understand!
+
+{summary="Note on `lib.fht`"}
+::: details
+`lib.fht.linkTo` is essentially a clone of [`mkOutOfStoreSymlink`]{.function}, which you should
+be familiar enough if you used home-manager before.
+
+This is one downside of this approach is that you lose access to home-manager lib, which includes
+DAG stuff if you use that. I don't, so this doesn't affect + `mkOutOfStoreSymlink` is pretty simple
+to copy, it only depends on another small function.
+:::
+
+## Conclusion
+
+Overall, I like this! I've restructured all my [dotfiles][dots] to use this new system. It works well
+enough and I've yet to notice any downsides:
+
+::: codeblock
+[$]{.comment} [ll]{.color4} modules
+[d]{.color4 .bold}[r]{.color3 .bold}[w]{.color1 .bold}[x]{.color2 .bold}[r]{.color3}[-]{.color8 .bold}[x]{.color2}[r]{.color3}[-]{.color8 .bold}[x]{.color2}    [-]{.color8 .bold} [nferhat]{.color3 .bold} [ 3 Oct 01:02]{.color4} [desktop]{.color4 .bold}
+[d]{.color4 .bold}[r]{.color3 .bold}[w]{.color1 .bold}[x]{.color2 .bold}[r]{.color3}[-]{.color8 .bold}[x]{.color2}[r]{.color3}[-]{.color8 .bold}[x]{.color2}    [-]{.color8 .bold} [nferhat]{.color3 .bold} [ 3 Oct 01:08]{.color4} [programs]{.color4 .bold}
+.[r]{.color3 .bold}[w]{.color1 .bold}[-]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold} [3.0k]{.color2 .bold} [nferhat]{.color3 .bold} [ 3 Oct 01:01]{.color4} core.nix
+.[r]{.color3 .bold}[w]{.color1 .bold}[-]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold} [1.8k]{.color2 .bold} [nferhat]{.color3 .bold} [21 Sep 10:33]{.color4} home.nix
+.[r]{.color3 .bold}[w]{.color1 .bold}[-]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}  [907]{.color2} [nferhat]{.color3 .bold} [21 Sep 10:33]{.color4} limine.nix
+.[r]{.color3 .bold}[w]{.color1 .bold}[-]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold} [1.2k]{.color2 .bold} [nferhat]{.color3 .bold} [21 Sep 10:33]{.color4} nix.nix
+.[r]{.color3 .bold}[w]{.color1 .bold}[-]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold} [1.1k]{.color2 .bold} [nferhat]{.color3 .bold} [23 Sep 15:59]{.color4} ssh.nix
+.[r]{.color3 .bold}[w]{.color1 .bold}[-]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}  [534]{.color2} [nferhat]{.color3 .bold} [23 Sep 19:37]{.color4} syncthing.nix
+.[r]{.color3 .bold}[w]{.color1 .bold}[-]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}[r]{.color3}[\--]{.color8 .bold}  [852]{.color2} [nferhat]{.color3 .bold} [ 3 Oct 01:01]{.color4} tailscale.nix
+:::
+
+[dots]: https://github.com/nferhat/dotfiles
