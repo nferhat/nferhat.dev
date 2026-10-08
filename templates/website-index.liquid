@@ -12,7 +12,6 @@
             {% for blog in pages %}
                 {% if blog.url contains "blog" and blog.url != "blog/index.html" and blog.url != "blog/tags.html" and blog.draft == false -%}
                     <a class="colorless-link" href="/{{blog.url}}">
-                        <span class=blog-list-marker># </span>
                         <h3 class=blog-title-list>{{blog.title}}</h3>
                     </a>
 
